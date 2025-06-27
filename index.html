@@ -4,24 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>123go - Quiz Matemático</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/fonts/transformations.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="start-screen" class="screen active" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100dvh; text-align: center; gap: 30px;">
+        <h1>Bem-vindo ao Quiz de Matemática!</h1>
+        <p>Este quiz é para crianças de 4 a 6 anos. Responda as perguntas com atenção e divirta-se aprendendo!</p>
+        <p>Você verá perguntas com imagens, números e desafios divertidos. Clique em "Iniciar" para começar!</p>
+        <button id="start-btn" style="background: #4CAF50; color: white; border: none; padding: 15px 30px; border-radius: 25px; font-size: 18px; font-weight: bold; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);">Iniciar</button>
+    </div>
     <!-- Tela 1: Contagem -->
     <div class="screen active" id="screen-1">
         <header class="header">
-            <div class="logo">123go</div>
+            <div class="logo"></div>
             <div class="progress-container">
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 9%"></div>
                 </div>
-                <span class="progress-text">1/11</span>
+                <span class="progress-text"></span>
             </div>
-            <button class="close-btn">×</button>
+            <button class="close-btn">
+                <i class='bx bx-x bx-sm'></i> 
+            </button>
         </header>
 
         <div class="audio-player">
-            <button class="play-btn" onclick="playAudio('screen-1')">▶</button>
+            <button class="play-btn" onclick="playAudio('screen-1')">
+                <i class='bx bxs-play bx-sm'></i> 
+            </button>
             <div class="waveform">
                 <div class="wave-bar"></div>
                 <div class="wave-bar"></div>
@@ -35,13 +48,7 @@
         </div>
 
         <main class="content">
-            <div class="illustration-placeholder">
-                <div class="balls-container">
-                    <div class="ball"></div>
-                    <div class="ball"></div>
-                    <div class="ball"></div>
-                </div>
-            </div>
+            <div class="contagem-bolas candy"></div>
         </main>
 
         <div class="keyboard-container">
@@ -57,13 +64,15 @@
                 <button class="key" onclick="selectNumber(9, 'screen-1')">9</button>
                 <button class="key empty"></button>
                 <button class="key" onclick="selectNumber(0, 'screen-1')">0</button>
-                <button class="key delete" onclick="deleteNumber('screen-1')">⌫</button>
+                <button class="key delete" onclick="deleteNumber('screen-1')">
+                    <i class='bx bx-backspace bx-sm'></i> 
+                </button>
             </div>
         </div>
 
         <footer class="footer">
             <button class="continue-btn disabled" id="continue-1" onclick="nextScreen(2)">
-                <span>→</span>
+                <i class='bx bx-arrow-right-stroke bx-sm'></i> 
             </button>
         </footer>
     </div>
@@ -71,18 +80,22 @@
     <!-- Tela 2: Numerais -->
     <div class="screen" id="screen-2">
         <header class="header">
-            <div class="logo">123go</div>
+            <div class="logo"></div>
             <div class="progress-container">
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 18%"></div>
                 </div>
-                <span class="progress-text">2/11</span>
+                <span class="progress-text"></span>
             </div>
-            <button class="close-btn">×</button>
+            <button class="close-btn">
+                <i class='bx bx-x bx-sm'></i> 
+            </button>
         </header>
 
         <div class="audio-player">
-            <button class="play-btn" onclick="playAudio('screen-2')">▶</button>
+            <button class="play-btn" onclick="playAudio('screen-2')">
+                <i class='bx bxs-play bx-sm'></i>
+            </button>
             <div class="waveform">
                 <div class="wave-bar"></div>
                 <div class="wave-bar"></div>
@@ -96,23 +109,29 @@
         </div>
 
         <main class="content">
-            <div class="options-container">
-                <label class="option-card">
-                    <input type="radio" name="number" value="2" onchange="enableContinue('screen-2')">
-                    <div class="number-display">2</div>
-                    <span class="option-label">Placeholder: Ilustração do 2</span>
-                </label>
-                <label class="option-card">
-                    <input type="radio" name="number" value="4" onchange="enableContinue('screen-2')">
-                    <div class="number-display">4</div>
-                    <span class="option-label">Placeholder: Ilustração do 4</span>
-                </label>
+            <div class="rive-animation-container">
+                <canvas id="rive-canvas-screen-2" width="500" height="400"></canvas>
             </div>
         </main>
 
+        <div class="alternatives" id="alternatives-2">
+            <label class="option-card2">
+                    <input type="radio" name="number" value="2" onchange="enableContinue('screen-2')">
+                    <div class="yes-no-display">
+                        <i class='bx bx-x bx-md'></i> 
+                    </div>
+                </label>
+            <label class="option-card2">
+                    <input type="radio" name="number" value="4" onchange="enableContinue('screen-2')">
+                    <div class="yes-no-display">
+                        <i class="bx bx-check bx-md"></i>
+                    </div>
+                </label>
+        </div>        
+
         <footer class="footer">
             <button class="continue-btn disabled" id="continue-2" onclick="nextScreen(3)">
-                <span>→</span>
+                <i class='bx bx-arrow-right-stroke bx-sm'></i>
             </button>
         </footer>
     </div>
@@ -120,18 +139,22 @@
     <!-- Tela 3: Estimativa -->
     <div class="screen" id="screen-3">
         <header class="header">
-            <div class="logo">123go</div>
+            <div class="logo"></div>
             <div class="progress-container">
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 27%"></div>
                 </div>
-                <span class="progress-text">3/11</span>
+                <span class="progress-text"></span>
             </div>
-            <button class="close-btn">×</button>
+            <button class="close-btn">
+                <i class='bx bx-x bx-sm'></i> 
+            </button>
         </header>
 
         <div class="audio-player">
-            <button class="play-btn" onclick="playAudio('screen-3')">▶</button>
+            <button class="play-btn" onclick="playAudio('screen-3')">
+                <i class='bx bxs-play bx-sm'></i>
+            </button>
             <div class="waveform">
                 <div class="wave-bar"></div>
                 <div class="wave-bar"></div>
@@ -149,30 +172,46 @@
                 <label class="option-card">
                     <input type="radio" name="quantity" value="2" onchange="enableContinue('screen-3')">
                     <div class="items-group">
-                        <div class="item"></div>
-                        <div class="item"></div>
+                        <div class="item">
+                            <img src="images/apple-single.svg" alt="Carro" class="car-image">
+                        </div>
+                        <div class="item">
+                            <img src="images/apple-single.svg" alt="Carro" class="car-image">
+                        </div>
                     </div>
-                    <span class="option-label">2 itens</span>
                 </label>
                 <label class="option-card">
                     <input type="radio" name="quantity" value="7" onchange="enableContinue('screen-3')">
                     <div class="items-group">
-                        <div class="item"></div>
-                        <div class="item"></div>
-                        <div class="item"></div>
-                        <div class="item"></div>
-                        <div class="item"></div>
-                        <div class="item"></div>
-                        <div class="item"></div>
+                        <div class="item">
+                            <img src="images/apple-single.svg" alt="Carro" class="car-image">
+                        </div>
+                        <div class="item">
+                            <img src="images/apple-single.svg" alt="Carro" class="car-image">
+                        </div>
+                        <div class="item">
+                            <img src="images/apple-single.svg" alt="Carro" class="car-image">
+                        </div>
+                        <div class="item">
+                            <img src="images/apple-single.svg" alt="Carro" class="car-image">
+                        </div>
+                        <div class="item">
+                            <img src="images/apple-single.svg" alt="Carro" class="car-image">
+                        </div>
+                        <div class="item">
+                            <img src="images/apple-single.svg" alt="Carro" class="car-image">
+                        </div>
+                        <div class="item">
+                            <img src="images/apple-single.svg" alt="Carro" class="car-image">
+                        </div>
                     </div>
-                    <span class="option-label">7 itens</span>
                 </label>
             </div>
         </main>
 
         <footer class="footer">
             <button class="continue-btn disabled" id="continue-3" onclick="nextScreen(4)">
-                <span>→</span>
+                <i class='bx bx-arrow-right-stroke bx-sm'></i> 
             </button>
         </footer>
     </div>
@@ -180,18 +219,22 @@
     <!-- Tela 4: Reta numérica - Carros -->
     <div class="screen" id="screen-4">
         <header class="header">
-            <div class="logo">123go</div>
+            <div class="logo"></div>
             <div class="progress-container">
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 36%"></div>
                 </div>
-                <span class="progress-text">4/11</span>
+                <span class="progress-text"></span>
             </div>
-            <button class="close-btn">×</button>
+            <button class="close-btn">
+                <i class='bx bx-x bx-sm'></i> 
+            </button>
         </header>
 
         <div class="audio-player">
-            <button class="play-btn" onclick="playAudio('screen-4')">▶</button>
+            <button class="play-btn" onclick="playAudio('screen-4')">
+                <i class='bx bxs-play bx-sm'></i>
+            </button>
             <div class="waveform">
                 <div class="wave-bar"></div>
                 <div class="wave-bar"></div>
@@ -206,32 +249,63 @@
 
         <main class="content">
             <div class="race-background">
-                <div class="background-placeholder">Placeholder: Cenário de corrida</div>
+                <!-- <div class="background-placeholder"> -->
+                   <!-- <img src="/images/chegada.png" alt="Chegada" class="finish-line"> -->
+               <!-- </div> -->
                 <div class="cars-container">
                     <label class="car-option">
                         <input type="radio" name="position" value="1" onchange="enableContinue('screen-4')">
-                        <div class="car">🏎️</div>
-                        <span class="position-label">1º</span>
+                        <div class="race-row">
+                        <div class="lane empty"></div>
+                        <div class="lane car">
+                            <img src="images/car_top_view.webp" alt="Carro" class="car-image">
+                        </div>
+                        </div>
+                        <!--<span class="position-label">1º</span> -->
                     </label>
+
                     <label class="car-option">
                         <input type="radio" name="position" value="2" onchange="enableContinue('screen-4')">
-                        <div class="car">🏎️</div>
-                        <span class="position-label">2º</span>
+                        <div class="race-row">
+                        <div class="lane car">
+                            <img src="images/car_top_view.webp" alt="Carro" class="car-image">
+                        </div>
+                        <div class="lane empty"></div>
+                        </div>
+                        <!--<span class="position-label">2º</span> -->
                     </label>
+
                     <label class="car-option">
                         <input type="radio" name="position" value="3" onchange="enableContinue('screen-4')">
-                        <div class="car">🏎️</div>
-                        <span class="position-label">3º</span>
+                        <div class="race-row">
+                        <div class="lane empty"></div>
+                        <div class="lane car">
+                            <img src="images/car_top_view.webp" alt="Carro" class="car-image">
+                        </div>
+                        </div>
+                        <!--<span class="position-label">3º</span> -->
                     </label>
+
                     <label class="car-option">
                         <input type="radio" name="position" value="4" onchange="enableContinue('screen-4')">
-                        <div class="car">🏎️</div>
-                        <span class="position-label">4º</span>
+                        <div class="race-row">
+                        <div class="lane car">
+                            <img src="images/car_top_view.webp" alt="Carro" class="car-image">
+                        </div>
+                        <div class="lane empty"></div>
+                        </div>
+                        <!--<span class="position-label">4º</span> -->
                     </label>
+
                     <label class="car-option">
                         <input type="radio" name="position" value="5" onchange="enableContinue('screen-4')">
-                        <div class="car">🏎️</div>
-                        <span class="position-label">5º</span>
+                        <div class="race-row">
+                        <div class="lane empty"></div>
+                        <div class="lane car">
+                            <img src="images/car_top_view.webp" alt="Carro" class="car-image">
+                        </div>
+                        </div>
+                        <!-- <span class="position-label">5º</span> -->
                     </label>
                 </div>
             </div>
@@ -239,7 +313,7 @@
 
         <footer class="footer">
             <button class="continue-btn disabled" id="continue-4" onclick="nextScreen(5)">
-                <span>→</span>
+                <i class='bx bx-arrow-right-stroke bx-sm'></i> 
             </button>
         </footer>
     </div>
@@ -247,18 +321,22 @@
     <!-- Tela 5: Reta numérica interativa -->
     <div class="screen" id="screen-5">
         <header class="header">
-            <div class="logo">123go</div>
+            <div class="logo"></div>
             <div class="progress-container">
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 45%"></div>
                 </div>
-                <span class="progress-text">5/11</span>
+                <span class="progress-text"></span>
             </div>
-            <button class="close-btn">×</button>
+            <button class="close-btn">
+                <i class='bx bx-x bx-sm'></i> 
+            </button>
         </header>
 
         <div class="audio-player">
-            <button class="play-btn" onclick="playAudio('screen-5')">▶</button>
+            <button class="play-btn" onclick="playAudio('screen-5')">
+                <i class='bx bxs-play bx-sm'></i>
+            </button>
             <div class="waveform">
                 <div class="wave-bar"></div>
                 <div class="wave-bar"></div>
@@ -272,30 +350,42 @@
         </div>
 
         <main class="content">
-            <div class="ruler-illustration">
-                <div class="animal-placeholder">🐍</div>
-                <span class="placeholder-text">Placeholder: Bichinho comprido</span>
+            <div class="animal-placeholder">
+
             </div>
             <div class="ruler-container">
-                <div class="ruler">
-                    <button class="ruler-mark" onclick="selectRulerPosition(0, 'screen-5')" data-value="0"></button>
-                    <button class="ruler-mark" onclick="selectRulerPosition(1, 'screen-5')" data-value="1"></button>
-                    <button class="ruler-mark" onclick="selectRulerPosition(2, 'screen-5')" data-value="2"></button>
-                    <button class="ruler-mark" onclick="selectRulerPosition(3, 'screen-5')" data-value="3"></button>
-                    <button class="ruler-mark" onclick="selectRulerPosition(4, 'screen-5')" data-value="4"></button>
-                    <button class="ruler-mark" onclick="selectRulerPosition(5, 'screen-5')" data-value="5"></button>
-                    <button class="ruler-mark" onclick="selectRulerPosition(6, 'screen-5')" data-value="6"></button>
-                    <button class="ruler-mark" onclick="selectRulerPosition(7, 'screen-5')" data-value="7"></button>
-                    <button class="ruler-mark" onclick="selectRulerPosition(8, 'screen-5')" data-value="8"></button>
-                    <button class="ruler-mark" onclick="selectRulerPosition(9, 'screen-5')" data-value="9"></button>
-                    <button class="ruler-mark" onclick="selectRulerPosition(10, 'screen-5')" data-value="10"></button>
-                </div>
+            <!-- AQUI VAI O NOVO SLIDER -->
+                
+                    <div class="step-slider">
+                    <!-- Linha de fundo (sempre cinza) -->
+                    <div class="slider-track"></div>
+                    
+                    <!-- Labels dos números -->
+                    <div class="step-labels" id="labels"></div> 
+                    
+                    <!-- Pontos dos steps -->
+                    <div class="step-points" id="points"></div>
+                    
+                    <!-- Seta -->
+                    <div class="slider-arrow" id="arrow">
+
+                    <svg width="38" height="44" viewBox="0 0 38 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 18.4518C0 15.7886 1.17951 13.2621 3.22121 11.5521L13.4994 2.94367C16.8975 0.0975716 21.862 0.149452 25.1999 3.06594L34.9217 11.5604C36.8778 13.2694 38 15.7403 38 18.3378V34.5C38 39.4706 33.9706 43.5 29 43.5H9C4.02944 43.5 0 39.4706 0 34.5V18.4518Z"
+      fill="#4EBEEC"
+      stroke="black"
+      stroke-width="2"/>
+                    </svg>
+
+                    </div>
+                    
+                    <!-- Input range invisível -->
+                    <input type="range" class="slider-input" id="slider" min="0" max="6" value="0" step="1">
             </div>
         </main>
 
         <footer class="footer">
             <button class="continue-btn disabled" id="continue-5" onclick="nextScreen(6)">
-                <span>→</span>
+                <i class='bx bx-arrow-right-stroke bx-sm'></i> 
             </button>
         </footer>
     </div>
@@ -303,18 +393,22 @@
     <!-- Tela 6: Completar régua -->
     <div class="screen" id="screen-6">
         <header class="header">
-            <div class="logo">123go</div>
+            <div class="logo"></div>
             <div class="progress-container">
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 54%"></div>
                 </div>
-                <span class="progress-text">6/11</span>
+                <span class="progress-text"></span>
             </div>
-            <button class="close-btn">×</button>
+            <button class="close-btn">
+                <i class='bx bx-x bx-sm'></i> 
+            </button>
         </header>
 
         <div class="audio-player">
-            <button class="play-btn" onclick="playAudio('screen-6')">▶</button>
+            <button class="play-btn" onclick="playAudio('screen-6')">
+                <i class='bx bxs-play bx-sm'></i>
+            </button>
             <div class="waveform">
                 <div class="wave-bar"></div>
                 <div class="wave-bar"></div>
@@ -329,11 +423,6 @@
 
         <main class="content">
             <div class="numbered-ruler">
-                <div class="ruler-number">0</div>
-                <div class="ruler-number">1</div>
-                <div class="ruler-number">2</div>
-                <div class="ruler-number">3</div>
-                <div class="ruler-number">4</div>
                 <div class="ruler-number">5</div>
                 <div class="ruler-number">6</div>
                 <div class="ruler-number missing" id="missing-number">?</div>
@@ -362,7 +451,7 @@
 
         <footer class="footer">
             <button class="continue-btn disabled" id="continue-6" onclick="nextScreen(7)">
-                <span>→</span>
+                <i class='bx bx-arrow-right-stroke bx-sm'></i> 
             </button>
         </footer>
     </div>
@@ -370,18 +459,22 @@
     <!-- Tela 7: Prédio -->
     <div class="screen" id="screen-7">
         <header class="header">
-            <div class="logo">123go</div>
+            <div class="logo"></div>
             <div class="progress-container">
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 63%"></div>
                 </div>
-                <span class="progress-text">7/11</span>
+                <span class="progress-text"></span>
             </div>
-            <button class="close-btn">×</button>
+            <button class="close-btn">
+                <i class='bx bx-x bx-sm'></i> 
+            </button>
         </header>
 
         <div class="audio-player">
-            <button class="play-btn" onclick="playAudio('screen-7')">▶</button>
+            <button class="play-btn" onclick="playAudio('screen-7')">
+                <i class='bx bxs-play bx-sm'></i>
+            </button>
             <div class="waveform">
                 <div class="wave-bar"></div>
                 <div class="wave-bar"></div>
@@ -395,37 +488,30 @@
         </div>
 
         <main class="content">
-            <div class="building-container">
-                <div class="building-background">Placeholder: Ilustração do prédio</div>
-                <div class="floors">
-                    <label class="floor-option">
-                        <input type="radio" name="floor" value="3" onchange="enableContinue('screen-7')">
-                        <div class="floor-content">
-                            <span class="floor-number">3º andar</span>
-                            <div class="character">👧 Maria</div>
-                        </div>
-                    </label>
-                    <label class="floor-option">
-                        <input type="radio" name="floor" value="2" onchange="enableContinue('screen-7')">
-                        <div class="floor-content">
-                            <span class="floor-number">2º andar</span>
-                            <div class="character">👦 João</div>
-                        </div>
-                    </label>
-                    <label class="floor-option">
-                        <input type="radio" name="floor" value="1" onchange="enableContinue('screen-7')">
-                        <div class="floor-content">
-                            <span class="floor-number">1º andar</span>
-                            <div class="character"></div>
-                        </div>
-                    </label>
+            <div class="background-placeholder">
+                <div class="building-container">
+                <!--  <div class="building-background"></div>-->
+                    <div class="floors">
+                        <label class="floor-option">
+                            <input type="radio" name="floor" value="3" onchange="enableContinue('screen-7')">
+                            <img src="images/maria.webp" alt="Andar 2">
+                        </label>
+                        <label class="floor-option">
+                            <input type="radio" name="floor" value="2" onchange="enableContinue('screen-7')">
+                            <img src="images/floor.webp" alt="Andar 2">
+                        </label>
+                        <label class="floor-option">
+                            <input type="radio" name="floor" value="1" onchange="enableContinue('screen-7')">
+                            <img src="images/floor.webp" alt="Andar 2">
+                        </label>
+                    </div>
                 </div>
             </div>
         </main>
 
         <footer class="footer">
             <button class="continue-btn disabled" id="continue-7" onclick="nextScreen(8)">
-                <span>→</span>
+                <i class='bx bx-arrow-right-stroke bx-sm'></i> 
             </button>
         </footer>
     </div>
@@ -433,18 +519,22 @@
     <!-- Tela 8: Magnitudes -->
     <div class="screen" id="screen-8">
         <header class="header">
-            <div class="logo">123go</div>
+            <div class="logo"></div>
             <div class="progress-container">
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 72%"></div>
                 </div>
-                <span class="progress-text">8/11</span>
+                <span class="progress-text"></span>
             </div>
-            <button class="close-btn">×</button>
+            <button class="close-btn">
+                <i class='bx bx-x bx-sm'></i> 
+            </button>
         </header>
 
         <div class="audio-player">
-            <button class="play-btn" onclick="playAudio('screen-8')">▶</button>
+            <button class="play-btn" onclick="playAudio('screen-8')">
+                <i class='bx bxs-play bx-sm'></i>
+            </button>
             <div class="waveform">
                 <div class="wave-bar"></div>
                 <div class="wave-bar"></div>
@@ -461,20 +551,24 @@
             <div class="options-container">
                 <label class="option-card">
                     <input type="radio" name="magnitude" value="5" onchange="enableContinue('screen-8')">
-                    <div class="number-display large">5</div>
-                    <span class="option-label">Placeholder: Ilustração do 5</span>
+                    <div class="number-display large">
+                        <img src="images/num5.svg" class="number-option">
+                    </div>
                 </label>
+                
                 <label class="option-card">
                     <input type="radio" name="magnitude" value="8" onchange="enableContinue('screen-8')">
-                    <div class="number-display large">8</div>
-                    <span class="option-label">Placeholder: Ilustração do 8</span>
+                    <div class="number-display large">
+                        <img src="images/num8.svg" class="number-option">
+                    </div>
+                    
                 </label>
             </div>
         </main>
 
         <footer class="footer">
             <button class="continue-btn disabled" id="continue-8" onclick="nextScreen(9)">
-                <span>→</span>
+                <i class='bx bx-arrow-right-stroke bx-sm'></i> 
             </button>
         </footer>
     </div>
@@ -482,18 +576,22 @@
     <!-- Tela 9: Composição -->
     <div class="screen" id="screen-9">
         <header class="header">
-            <div class="logo">123go</div>
+            <div class="logo"></div>
             <div class="progress-container">
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 81%"></div>
                 </div>
-                <span class="progress-text">9/11</span>
+                <span class="progress-text"></span>
             </div>
-            <button class="close-btn">×</button>
+            <button class="close-btn">
+                <i class='bx bx-x bx-sm'></i> 
+            </button>
         </header>
 
         <div class="audio-player">
-            <button class="play-btn" onclick="playAudio('screen-9')">▶</button>
+            <button class="play-btn" onclick="playAudio('screen-9')">
+                <i class='bx bxs-play bx-sm'></i>
+            </button>
             <div class="waveform">
                 <div class="wave-bar"></div>
                 <div class="wave-bar"></div>
@@ -507,15 +605,7 @@
         </div>
 
         <main class="content">
-            <div class="animation-container">
-                <div class="rive-placeholder">
-                    <div class="coins-animation">
-                        <span class="coins-before">🪙🪙🪙🪙🪙</span>
-                        <span class="arrow">→</span>
-                        <span class="coins-after">🪙🪙</span>
-                    </div>
-                    <span class="placeholder-text">Espaço para animação .rive</span>
-                </div>
+            <div class="lost-coins">
             </div>
         </main>
 
@@ -538,7 +628,7 @@
 
         <footer class="footer">
             <button class="continue-btn disabled" id="continue-9" onclick="nextScreen(10)">
-                <span>→</span>
+                <i class='bx bx-arrow-right-stroke bx-sm'></i> 
             </button>
         </footer>
     </div>
@@ -546,18 +636,22 @@
     <!-- Tela 10: Cálculos -->
     <div class="screen" id="screen-10">
         <header class="header">
-            <div class="logo">123go</div>
+            <div class="logo"></div>
             <div class="progress-container">
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 90%"></div>
                 </div>
-                <span class="progress-text">10/11</span>
+                <span class="progress-text"></span>
             </div>
-            <button class="close-btn">×</button>
+            <button class="close-btn">
+                <i class='bx bx-x bx-sm'></i> 
+            </button>
         </header>
 
         <div class="audio-player">
-            <button class="play-btn" onclick="playAudio('screen-10')">▶</button>
+            <button class="play-btn" onclick="playAudio('screen-10')">
+                <i class='bx bxs-play bx-sm'></i>
+            </button>
             <div class="waveform">
                 <div class="wave-bar"></div>
                 <div class="wave-bar"></div>
@@ -601,7 +695,7 @@
 
         <footer class="footer">
             <button class="continue-btn disabled" id="continue-10" onclick="nextScreen(11)">
-                <span>→</span>
+                <i class='bx bx-arrow-right-stroke bx-sm'></i> 
             </button>
         </footer>
     </div>
@@ -609,18 +703,22 @@
     <!-- Tela 11: Problemas -->
     <div class="screen" id="screen-11">
         <header class="header">
-            <div class="logo">123go</div>
+            <div class="logo"></div>
             <div class="progress-container">
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 100%"></div>
                 </div>
-                <span class="progress-text">11/11</span>
+                <span class="progress-text"></span>
             </div>
-            <button class="close-btn">×</button>
+            <button class="close-btn">
+                <i class='bx bx-x bx-sm'></i> 
+            </button>
         </header>
 
         <div class="audio-player">
-            <button class="play-btn" onclick="playAudio('screen-11')">▶</button>
+            <button class="play-btn" onclick="playAudio('screen-11')">
+                <i class='bx bxs-play bx-sm'></i>
+            </button>
             <div class="waveform">
                 <div class="wave-bar"></div>
                 <div class="wave-bar"></div>
@@ -634,18 +732,7 @@
         </div>
 
         <main class="content">
-            <div class="story-container">
-                <div class="story-illustration">
-                    <div class="dog-bones">
-                        <span class="dog">🐕</span>
-                        <div class="bones">
-                            <span class="bone">🦴</span>
-                            <span class="bone">🦴</span>
-                            <span class="bone">🦴</span>
-                        </div>
-                    </div>
-                    <span class="placeholder-text">Placeholder: Cachorro e ossos enterrados</span>
-                </div>
+            <div class="dog-illustration">
             </div>
         </main>
 
@@ -668,7 +755,7 @@
 
         <footer class="footer">
             <button class="continue-btn disabled" id="continue-11" onclick="finishQuiz()">
-                <span>→</span>
+                <i class='bx bx-arrow-right-stroke bx-sm'></i> 
             </button>
         </footer>
     </div>
@@ -687,6 +774,7 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/@rive-app/canvas@2.24.0"></script>
     <script src="script.js"></script>
 </body>
 </html>
